@@ -1,0 +1,4 @@
+#!/bin/bash
+#echo "Introduce start si quieres encender o stop si quieres apagar las maquinas:"
+#read var2
+while IFS= read -r maquinas; do echo "$maquinas" | oci compute instance action --instance-id "$maquinas" --action softstop &> /dev/null  ; done < lista_maquinas
