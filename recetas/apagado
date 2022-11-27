@@ -1,0 +1,19 @@
+#!/bin/bash
+
+oci iam compartment list --compartment-id "OCID COMPARTMENT" --output table --query "data [*].{nombre:\"name\", OCID:id}"
+
+echo "Introduce el OCI ID del compartment:"
+
+read var1
+
+oci compute instance list --compartment-id $var1  --output table --query "data [*].{server:\"display-name\", OCID:id}"
+
+echo "Introduce el oci id de la maquina que vamos a interactuar:"
+
+read var2
+
+echo "Introduce start si quieres encender o stop si quieres apagar:"
+
+read var3
+
+oci compute instance action --instance-id $var2 --action $var3 &> /dev/null
